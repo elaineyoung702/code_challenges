@@ -16,7 +16,6 @@ def print_recursively(lst):
     if not lst:
         return
 
-
     print(lst[0])
     lst.pop(0)
 
