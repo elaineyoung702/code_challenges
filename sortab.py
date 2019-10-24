@@ -36,6 +36,9 @@ def sort_ab(a, b):
             ab_list.append(b[0])
             b.pop(0)
 
+    if not a and not b:
+        return ab_list 
+
     if not a:
         ab_list.extend(b)
 
