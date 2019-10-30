@@ -89,21 +89,24 @@ class Node(object):
     def insert(self, new_data):
         """Insert new node with `new_data` to BST tree rooted here."""
 
-
         while True:
             if new_data < self.data:
+
                 if not self.left:
                     self.left = Node(new_data)
                     break
+
                 else:
                     self = self.left
+
             elif new_data > self.data:
+
                 if not self.right:
                     self.right = Node(new_data)
                     break
+
                 else:
                     self = self.right
-
 
 
 if __name__ == "__main__":
