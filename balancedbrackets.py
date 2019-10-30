@@ -54,49 +54,42 @@ def has_balanced_brackets(phrase):
     string contains balanced (), {}, [], and/or <>.
     """
 
-    open_brackets = set("<{[(")
-    close_brackets = set(">}])")
-    brackets = []
+    open_brackets = set("([{<")
+    close_brackets = set(")}]>")
+
+    # Creating a dict for fast searching.
+    # Key is closing bracket to look up open bracket
+    bracket_pairs = {
+      ")" : "(",
+      "}" : "{",
+      "]" : "[",
+      ">" : "<",
+    }
+
+    # Creating a stack/Python list to track
+    seen_brackets = []
 
     for char in phrase:
 
       if char in open_brackets:
-        brackets.append(char)
+        seen_brackets.append(char)
 
       elif char in close_brackets:
-
-        if not brackets:
+        if not seen_brackets:
           return False
 
-        elif char == ">":
-          if brackets[-1] == "<":
-            brackets.pop()
+        else:
+          if seen_brackets[-1] == bracket_pairs[char]:
+            seen_brackets.pop()
+
           else:
             return False
 
-        elif char == ")":
-          if brackets[-1] == "(":
-            brackets.pop()
-          else:
-            return False
-
-        elif char == "]":
-          if brackets[-1] == "[":
-            brackets.pop()
-          else:
-            return False
-
-        elif char == "}":
-          if brackets[-1] == "{":
-            brackets.pop()
-          else:
-            return False
-
-    if brackets:
-      return False
+    if not seen_brackets:
+      return True
 
     else:
-      return True
+      return False
 
 
 if __name__ == '__main__':
