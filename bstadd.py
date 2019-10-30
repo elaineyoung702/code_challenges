@@ -86,27 +86,27 @@ class Node(object):
         else:
             return "<Node %s l=%s r=%s>" % (self.data, self.left, self.right)
 
+
     def insert(self, new_data):
         """Insert new node with `new_data` to BST tree rooted here."""
 
-        while True:
-            if new_data < self.data:
+        if new_data <= self.data:
 
-                if not self.left:
-                    self.left = Node(new_data)
-                    break
+            if not self.left:
+                self.left = Node(new_data)
 
-                else:
-                    self = self.left
+            else:
+                self = self.left
+                self.insert(new_data)
 
-            elif new_data > self.data:
+        elif new_data >= self.data:
 
-                if not self.right:
-                    self.right = Node(new_data)
-                    break
+            if not self.right:
+                self.right = Node(new_data)
 
-                else:
-                    self = self.right
+            else:
+                self = self.right
+                self.insert(new_data)
 
 
 if __name__ == "__main__":
