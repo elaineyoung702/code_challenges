@@ -69,16 +69,28 @@ def has_balanced_brackets(phrase):
           return False
 
         elif char == ">":
-          brackets.remove("<")
+          if brackets[-1] == "<":
+            brackets.pop()
+          else:
+            return False
 
         elif char == ")":
-          brackets.remove("(")
+          if brackets[-1] == "(":
+            brackets.pop()
+          else:
+            return False
 
         elif char == "]":
-          brackets.remove("[")
-          
+          if brackets[-1] == "[":
+            brackets.pop()
+          else:
+            return False
+
         elif char == "}":
-          brackets.remove("{")
+          if brackets[-1] == "{":
+            brackets.pop()
+          else:
+            return False
 
     if brackets:
       return False
